@@ -16,36 +16,42 @@
   <link href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <body>
   <div class="container register-form">
-  <h2 class="text-left">Register center</h2>
+  <h2 class="text-left">Register hospitalization</h2>
   <form class=form-horizontal action=/action_page.php>
     <div class=form-group>
-      <label class="control-label col-sm-2" for=codigo_centro>Center_id:</label>
+      <label class="control-label col-sm-2" for=codigo>Code:</label>
       <div class=col-sm-6>
-        <input type="text" class=form-control id=codigo_centro name=codigo_centro>
+        <input type="text" class=form-control id=codigo name=codigo>
       </div>
     </div>
     <div class=form-group>
-      <label class="control-label col-sm-2" for=nombre>Name:</label>
+      <label class="control-label col-sm-2" for=diainicial>Entry day:</label>
       <div class=col-sm-6>          
-        <input type="text" class=form-control id=nombre name=nombre>
+        <input type="text" class=form-control id=diainicial name=diainicial>
       </div>
       </div>
       <div class=form-group>
-      <label class="control-label col-sm-2" for=ubicacion>State:</label>
+      <label class="control-label col-sm-2" for=diafinal>Finish day:</label>
       <div class=col-sm-6>          
-        <input type="text" class=form-control id=ubicacion name=ubicacion>
+        <input type="text" class=form-control id=diafinal name=diafinal>
       </div>
     </div>
     <div class=form-group>
-      <label class="control-label col-sm-2" for=capacidad>Capacity:</label>
+      <label class="control-label col-sm-2" for=idpaciente>Patient id:</label>
       <div class=col-sm-6>          
-        <input type="text" class=form-control id=capacidad name=capacidad>
+        <input type="text" class=form-control id=idpaciente name=idpaciente>
       </div>
     </div>
     <div class=form-group>
-      <label class="control-label col-sm-2" for=tipo>Center_type:</label>
+      <label class="control-label col-sm-2" for=idfunc>Worker id:</label>
       <div class=col-sm-6>          
-        <input type="text" class=form-control id=tipo placeholder="Tipo de centro(Hospital, Clínica, Ebais...)" name=tipo>
+        <input type="text" class=form-control id=idfunc name=idfunc>
+      </div>
+    </div>  
+    <div class=form-group>
+      <label class="control-label col-sm-2" for=codigocentro>Center code:</label>
+      <div class=col-sm-6>          
+        <input type="text" class=form-control id=codigocentro name=codigocentro>
       </div>
     </div>  
     <div class=form-group>        

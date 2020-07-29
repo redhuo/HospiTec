@@ -15,39 +15,21 @@
   </head>
   <link href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <body>
-  <div class="container register-form">
-  <h2 class="text-left">Register center</h2>
+<div class="container register-form">
+  <h2 class="text-left">Register Hospitalization diagnostic</h2>
   <form class=form-horizontal action=/action_page.php>
     <div class=form-group>
-      <label class="control-label col-sm-2" for=codigo_centro>Center_id:</label>
+      <label class="control-label col-sm-2" for=Codigo>Code:</label>
       <div class=col-sm-6>
-        <input type="text" class=form-control id=codigo_centro name=codigo_centro>
+        <input type="text" class=form-control id=codigo name=codigo>
       </div>
     </div>
     <div class=form-group>
-      <label class="control-label col-sm-2" for=nombre>Name:</label>
+      <label class="control-label col-sm-2" for=iddiagnostico>Diagnostic id:</label>
       <div class=col-sm-6>          
-        <input type="text" class=form-control id=nombre name=nombre>
+        <input type="text" class=form-control id=iddiagnostico name=iddiagnostico>
       </div>
       </div>
-      <div class=form-group>
-      <label class="control-label col-sm-2" for=ubicacion>State:</label>
-      <div class=col-sm-6>          
-        <input type="text" class=form-control id=ubicacion name=ubicacion>
-      </div>
-    </div>
-    <div class=form-group>
-      <label class="control-label col-sm-2" for=capacidad>Capacity:</label>
-      <div class=col-sm-6>          
-        <input type="text" class=form-control id=capacidad name=capacidad>
-      </div>
-    </div>
-    <div class=form-group>
-      <label class="control-label col-sm-2" for=tipo>Center_type:</label>
-      <div class=col-sm-6>          
-        <input type="text" class=form-control id=tipo placeholder="Tipo de centro(Hospital, Clínica, Ebais...)" name=tipo>
-      </div>
-    </div>  
     <div class=form-group>        
       <div class="col-sm-offset-2 col-sm-10">
         <button type=Guardar class="btn btn-lg btn-primary">Submit</button>
@@ -55,6 +37,5 @@
     </div>
   </form>
 </div>
-
 </body>
 </html>

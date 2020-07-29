@@ -9,27 +9,41 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap-3.3.7/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    
-    <title>Hello, world!</title>
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+</head>
+    <title>HospiTec</title>
   </head>
   <link href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <body>
-   
-    <h1>Hello, world!</h1>
-      <div class="container">
-
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+  
+     <div class="container register-form">
+      <h2 class="text-left">Please sign in</h2>
+      <form class=form-horizontal action=/action_page.php>
+      <div class=form-group>
+        <label for="inputEmail" class="control-label col-sm-2">Email address</label>
+        <div class=col-sm-6>
+        <input type="email" id="inputEmail" class="form-control">
+        </div>
+        </div>
+        <div class=form-group>
+        <label for="inputPassword" class="control-label col-sm-2">Password</label>
+        <div class=col-sm-6>
+        <input type="password" id="inputPassword" class="form-control">
+        </div>
+        </div>
+        <div class=form-group>
+        <label for=tipo class="control-label col-sm-2">Type</label>
+        <div class=col-sm-6>
+        <input type="password" id="tipo" class="form-control">
+        </div>
+        </div>
         <div class="checkbox">
+         
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary type="submit">Sign in</button>
       </form>
 
     </div> <!-- /container -->

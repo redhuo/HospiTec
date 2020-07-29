@@ -16,47 +16,53 @@
   <link href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <body>
 <div class="container register-form">
-  <h2 class="text-left">Registrar: Funcionario</h2>
+  <h2 class="text-left">Register worker</h2>
   <form class=form-horizontal action=/action_page.php>
     <div class=form-group>
-      <label class="control-label col-sm-2" for=ide>Identificación:</label>
+      <label class="control-label col-sm-2" for=ide>Id:</label>
       <div class=col-sm-6>
-        <input type="text" class=form-control id=ide placeholder="Cédula" name=ide>
+        <input type="text" class=form-control id=ide name=ide>
       </div>
     </div>
     <div class=form-group>
-      <label class="control-label col-sm-2" for=nombre>Nombre:</label>
+      <label class="control-label col-sm-2" for=nombre>Name:</label>
       <div class=col-sm-6>          
-        <input type="text" class=form-control id=nombre placeholder="Nombre completo" name=nombre>
+        <input type="text" class=form-control id=nombre name=nombre>
       </div>
       </div>
       <div class=form-group>
-      <label class="control-label col-sm-2" for=apellido1>Primer apellido:</label>
+      <label class="control-label col-sm-2" for=apellido1>first last name:</label>
       <div class=col-sm-6>          
-        <input type="text" class=form-control id=apellido1 placeholder="Primer apellido" name=apellido1>
+        <input type="text" class=form-control id=apellido1 name=apellido1>
       </div>
       </div>
       <div class=form-group>
-      <label class="control-label col-sm-2" for=apellido2>Segundo apellido:</label>
+      <label class="control-label col-sm-2" for=apellido2>second last name:</label>
       <div class=col-sm-6>          
-        <input type="text" class=form-control id=apellido2 placeholder="Segundo apellido" name=apellido2>
+        <input type="text" class=form-control id=apellido2 name=apellido2>
       </div>
       </div>
       <div class=form-group>
-      <label class="control-label col-sm-2" for=fecha>Fecha de ingreso:</label>
+      <label class="control-label col-sm-2" for=fecha>Entry date:</label>
       <div class=col-sm-6>          
-        <input type="date" class=form-control id=fecha placeholder="Fecha" name=fecha value=""  min="1900-01-01" max="2020-12-31"> 
+        <input type="date" class=form-control id=fecha name=fecha value=""  min="1900-01-01" max="2020-12-31"> 
       </div>
     </div>
     <div class=form-group>
-      <label class="control-label col-sm-2" for=tipo>Tipo de funcionario:</label>
+      <label class="control-label col-sm-2" for=tipo>Worker type:</label>
       <div class=col-sm-6>          
-        <input type="text" class=form-control id=tipo placeholder="Tipo de funcionario" name=tipo>
+        <input type="text" class=form-control id=tipo name=tipo>
+      </div>
+    </div>
+    <div class=form-group>
+      <label class="control-label col-sm-2" for=usuario>Username:</label>
+      <div class=col-sm-6>          
+        <input type="text" class=form-control id=usuario name=usuario>
       </div>
     </div>
     <div class=form-group>        
       <div class="col-sm-offset-2 col-sm-10">
-        <button type=Guardar class="btn btn-lg btn-primary">Guardar</button>
+        <button type=Guardar class="btn btn-lg btn-primary">Submit</button>
       </div>
     </div>
   </form>

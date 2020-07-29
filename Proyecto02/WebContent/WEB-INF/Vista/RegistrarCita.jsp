@@ -16,34 +16,34 @@
   <link href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <body>
 <div class="container register-form">
-  <h2 class="text-left">Registrar: Citas</h2>
+  <h2 class="text-left">Register appointment</h2>
   <form class=form-horizontal action=/action_page.php>
     <div class=form-group>
-      <label class="control-label col-sm-2" for=ide>Identificación:</label>
+      <label class="control-label col-sm-2" for=ide>Id:</label>
       <div class=col-sm-6>
-        <input type="text" class=form-control id=ide placeholder="Identificacion de cita" name=ide>
+        <input type="text" class=form-control id=ide name=ide>
       </div>
     </div>
     <div class=form-group>
-      <label class="control-label col-sm-2" for=area>Especialidad:</label>
+      <label class="control-label col-sm-2" for=area>Area:</label>
       <div class=col-sm-6>          
-        <input type="text" class=form-control id=area placeholder="Área de atención" name=area>
+        <input type="text" class=form-control id=area name=area>
       </div>
       </div>
       <div class=form-group>
-      <label class="control-label col-sm-2" for=fecha>Fecha:</label>
+      <label class="control-label col-sm-2" for=fecha>Date:</label>
       <div class=col-sm-6>          
-        <input type="date" class=form-control id=fecha placeholder="Fecha" name=fecha value=""  min="1900-01-01" max="2020-12-31"> 
+        <input type="date" class=form-control id=fecha name=fecha value=""  min="1900-01-01" max="2020-12-31"> 
       </div>
     </div>
       <div class=form-group>
-      <label class="control-label col-sm-2" for=hora>Hora:</label>
+      <label class="control-label col-sm-2" for=hora>Hour:</label>
       <div class=col-sm-6>          
-        <input type="text" class=form-control id=hora placeholder="Primer apellido" name=hora>
+        <input type="text" class=form-control id=hora name=hora>
       </div>
       </div>
       <div class=form-group>
-      <label class="control-label col-sm-2" for=residencia>Estado:</label>
+      <label class="control-label col-sm-2" for=residencia>Status:</label>
       <div class=col-sm-6>          
         <select class="form-control" id="estado">
             <option value="RE">Registrada</option>
@@ -54,9 +54,15 @@
             </select> 
       </div>
       </div>
+      <div class=form-group>
+      <label class="control-label col-sm-2" for=code>Center code:</label>
+      <div class=col-sm-6>          
+        <input type="text" class=form-control id=code name=code>
+      </div>
+      </div>
     <div class=form-group>        
       <div class="col-sm-offset-2 col-sm-10">
-        <button type=Guardar class="btn btn-lg btn-primary">Guardar</button>
+        <button type=Guardar class="btn btn-lg btn-primary">Submit</button>
       </div>
     </div>
   </form>
