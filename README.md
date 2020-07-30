@@ -1,3 +1,3 @@
 # HospiTec
 
-Proyecto para traajar con Postgre SQL 
+Proyecto para trabajar con Postgre SQL 
