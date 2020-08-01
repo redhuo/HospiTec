@@ -1,4 +1,4 @@
-/*package controller;
+package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -27,7 +27,7 @@ public class Login  extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	/*protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Hola Servlet..");
 		String action = request.getParameter("action");
@@ -70,7 +70,7 @@ public class Login  extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-/*	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Hola Servlet..");
 		doGet(request, response);
@@ -78,7 +78,7 @@ public class Login  extends HttpServlet {
 	
 	private void index (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
 		//mostrar(request, response);
-		RequestDispatcher dispatcher= request.getRequestDispatcher("index.jsp");
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/index.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -91,37 +91,37 @@ public class Login  extends HttpServlet {
 	}
 	
 	private void nuevo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/register.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/RegistrarFuncionario.jsp");
 		dispatcher.forward(request, response);
 	}
 	
 	
 	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException , ServletException{
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/mostrar.jsp");
-		List<Articulo> listaArticulos= articuloDAO.listarArticulos();
-		request.setAttribute("lista", listaArticulos);
+	/*	List<Articulo> listaArticulos= articuloDAO.listarArticulos();
+		request.setAttribute("lista", listaArticulos);*/
 		dispatcher.forward(request, response);
 	}	
 	
 	private void showEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-		request.setAttribute("articulo", articulo);
+	//	Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
+	//	request.setAttribute("articulo", articulo);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/editar.jsp");
 		dispatcher.forward(request, response);
 	}
 	
 	private void editar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-		Articulo articulo = new Articulo(Integer.parseInt(request.getParameter("id")), request.getParameter("codigo"), request.getParameter("nombre"), request.getParameter("descripcion"),request.getParameter("existencia"), request.getParameter("precio"));
-		articuloDAO.actualizar(articulo);
+	//	Articulo articulo = new Articulo(Integer.parseInt(request.getParameter("id")), request.getParameter("codigo"), request.getParameter("nombre"), request.getParameter("descripcion"),request.getParameter("existencia"), request.getParameter("precio"));
+		//articuloDAO.actualizar(articulo);
 		index(request, response);
 	}
 	
 	private void eliminar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-		Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-		articuloDAO.eliminar(articulo);
+		//Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
+		//articuloDAO.eliminar(articulo);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 		
-	}*/
-//}
+	}
+}
