@@ -1,4 +1,4 @@
-package controller;
+/*package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -27,7 +27,7 @@ public class Login  extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	/*protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Hola Servlet..");
 		String action = request.getParameter("action");
@@ -70,7 +70,7 @@ public class Login  extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+/*	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Hola Servlet..");
 		doGet(request, response);
@@ -123,5 +123,5 @@ public class Login  extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 		
-	}
-}
+	}*/
+//}
