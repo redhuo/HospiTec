@@ -55,7 +55,7 @@
 
 
 	</div>
-	 <a href="adminArticulo?action=nuevo" class="btn btn-primary stretched-link">Register</a>
+	 <a href="login?action=nuevo" class="btn btn-primary stretched-link">Register</a>
 	<!-- /container -->
 	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
