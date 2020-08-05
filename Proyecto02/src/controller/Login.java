@@ -56,6 +56,12 @@ public class Login  extends HttpServlet {
 			case "eliminar":
 				eliminar(request, response);
 				break;
+			case "woker":
+				eliminar(request, response);
+				break;
+			case "patient":
+				eliminar(request, response);
+				break;
 			default:
 				break;
 			}			
