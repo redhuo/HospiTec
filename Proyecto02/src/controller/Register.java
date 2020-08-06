@@ -1,4 +1,5 @@
 package controller;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -12,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-@WebServlet("/login")
-public class Login  extends HttpServlet {
+@WebServlet("/register")
+public class Register  extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 
@@ -34,7 +35,7 @@ public class Login  extends HttpServlet {
 		System.out.println(action);
 		try {
 			switch (action) {
-			case "index":
+			case "type":
 				index(request, response);
 				break;
 			case "nuevo":
@@ -84,7 +85,7 @@ public class Login  extends HttpServlet {
 	
 	private void index (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
 		//mostrar(request, response);
-		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/index.jsp");
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/RegistrarFuncionario.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -131,3 +132,4 @@ public class Login  extends HttpServlet {
 		
 	}
 }
+

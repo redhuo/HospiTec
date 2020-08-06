@@ -17,6 +17,11 @@
 </head>
 <title>HospiTec</title>
 </head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+ 
+ 
+</nav>
 <link
 	href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css"
 	rel="stylesheet" />
@@ -50,12 +55,17 @@
 					Remember me
 				</label>
 			</div>
+			<div class = "row">
 			<button class="btn btn-lg btn-primary type="submit">Sign in</button>
+			<a href="register?action=type" class="btn btn-primary stretched-link">Register</a>
+			</div>
+			
 		</form>
 
 
 	</div>
-	 <a href="login?action=nuevo" class="btn btn-primary stretched-link">Register</a>
+	
+
 	<!-- /container -->
 	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
