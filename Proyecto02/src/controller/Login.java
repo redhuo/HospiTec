@@ -57,10 +57,10 @@ public class Login  extends HttpServlet {
 				eliminar(request, response);
 				break;
 			case "worker":
-				eliminar(request, response);
+				loginWorker(request, response);
 				break;
 			case "patient":
-				eliminar(request, response);
+				loginPatient(request, response);
 				break;
 			default:
 				break;
@@ -129,5 +129,19 @@ public class Login  extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 		
+	}
+	private void loginWorker(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+		//	Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
+		//	request.setAttribute("articulo", articulo);
+			
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/LoginWorker.jsp");
+		dispatcher.forward(request, response);
+	}
+	private void loginPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+		//	Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
+		//	request.setAttribute("articulo", articulo);
+			
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		dispatcher.forward(request, response);
 	}
 }
