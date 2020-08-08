@@ -57,7 +57,7 @@
 			<button class="btn btn-lg btn-primary type="submit">Sign in</button>
 			<a href="register?action=patient" class="btn btn-primary stretched-link">Register</a>
 			</div>
-			<a href="register?action=patient" class="btn btn-primary stretched-link">prueba</a>
+			<a href="register?action=prueba" class="btn btn-primary stretched-link">prueba</a>
 			
 		</form>
 

@@ -24,15 +24,14 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Profile</a></li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Appointments
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Make Appointment</a>
-          <a class="dropdown-item" href="#">Cancel Appointment</a>
-          <a class="dropdown-item" href="#">Show Appointments</a>
-        </div>
+     <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Page 1-1</a></li>
+          <li><a href="#">Page 1-2</a></li>
+          <li><a href="#">Page 1-3</a></li>
+        </ul>
       </li>
       <li><a href="#">Diagnostics</a></li>
       <li><a href="#">Treatments</a></li>

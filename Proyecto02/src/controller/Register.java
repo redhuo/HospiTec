@@ -63,6 +63,9 @@ public class Register  extends HttpServlet {
 			case "patient":
 				registerPatient(request, response);
 				break;
+			case "prueba":
+				prueba(request, response);
+				break;
 			default:
 				break;
 			}			
@@ -139,6 +142,11 @@ public class Register  extends HttpServlet {
 	private void registerPatient (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
 		//mostrar(request, response);
 		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/RegistrarPaciente.jsp");
+		dispatcher.forward(request, response);
+	}
+	private void prueba (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		//mostrar(request, response);
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/IndexPatient.jsp");
 		dispatcher.forward(request, response);
 	}
 }
