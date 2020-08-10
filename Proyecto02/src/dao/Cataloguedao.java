@@ -22,12 +22,7 @@ public class Cataloguedao {
 	public Cataloguedao() throws SQLException {
 	
 		con = new Conexion();
-		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 	}
 	public void insert(Catalogue add) throws SQLException {
 		String sql = "select addcatalogue (?,?,?)";
@@ -130,7 +125,7 @@ public class Cataloguedao {
 	}*/
 	
 	public static void main (String args[]) {
-		Catalogue nuevo = new Catalogue("345","Fiebre","Paracetamol");
+		Catalogue nuevo = new Catalogue("755","Fiebre","Paracetamol");
 		
 		try {
 			new Cataloguedao().insert(nuevo);
