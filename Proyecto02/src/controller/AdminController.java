@@ -1,4 +1,8 @@
 package controller;
+
+
+
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -10,15 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Model.User;
-import dao.Userdao;
 
 
-
-@WebServlet("/login")
-public class Login  extends HttpServlet {
+@WebServlet("/admin")
+public class AdminController  extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Userdao user;
 	
 
 	
@@ -61,13 +61,10 @@ public class Login  extends HttpServlet {
 				eliminar(request, response);
 				break;
 			case "worker":
-				loginWorker(request, response);
+				registerWorker(request, response);
 				break;
 			case "patient":
-				loginPatient(request, response);
-				break;
-			case "access":
-				access(request, response);
+				registerPatient(request, response);
 				break;
 			default:
 				break;
@@ -91,7 +88,7 @@ public class Login  extends HttpServlet {
 	
 	private void index (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
 		//mostrar(request, response);
-		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/index.jsp");
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/IndexAdmin.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -137,31 +134,14 @@ public class Login  extends HttpServlet {
 		dispatcher.forward(request, response);
 		
 	}
-	private void loginWorker(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		//	Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-		//	request.setAttribute("articulo", articulo);
-			
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/LoginWorker.jsp");
+	private void registerWorker (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		//mostrar(request, response);
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/RegistrarFuncionario.jsp");
 		dispatcher.forward(request, response);
 	}
-	private void loginPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		//	Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-		//	request.setAttribute("articulo", articulo);
-			
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
-	}
-	private void access(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		//	Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-		//	request.setAttribute("articulo", articulo);
-		User aux =  user.getUser(request.getParameter("user"));
-		if (aux!= null) {
-			user.addSession(aux.getUsername(), aux.getType());
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/IndexPatient.jsp");
-			dispatcher.forward(request, response);
-		}
-				
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+	private void registerPatient (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		//mostrar(request, response);
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/RegistrarPaciente.jsp");
 		dispatcher.forward(request, response);
 	}
 }

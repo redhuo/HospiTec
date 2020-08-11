@@ -27,10 +27,9 @@
 
 	<div class="container register-form">
 		<h2 class="text-left">Please sign in</h2>
-		<form class=form-horizontal action=/action_page.php>
+		<form class=form-horizontal action="login?action=access">
 			<div class=form-group>
-				<label for="inputEmail" class="control-label col-sm-2">Email
-					address</label>
+				<label for="inputEmail" class="control-label col-sm-2">Username</label>
 				<div class=col-sm-6>
 					<input type="email" id="inputEmail" class="form-control">
 				</div>
@@ -41,12 +40,7 @@
 					<input type="password" id="inputPassword" class="form-control">
 				</div>
 			</div>
-			<div class=form-group>
-				<label for=tipo class="control-label col-sm-2">Type</label>
-				<div class=col-sm-6>
-					<input type="password" id="tipo" class="form-control">
-				</div>
-			</div>
+			
 			<div class="checkbox">
 
 				<label> <input type="checkbox" value="remember-me">

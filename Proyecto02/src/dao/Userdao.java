@@ -1,5 +1,7 @@
 package dao;
 
+
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -9,54 +11,28 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import Model.Appointment;
 import Model.Catalogue;
+import Model.Patient;
+import Model.User;
 import Utils.Conexion;
 
 
 
 
-public class  Appointmentdao {
+public class Userdao {
 	private Conexion con;
 	private Connection connection;
 
-	public Appointmentdao() throws SQLException {
+	public Userdao() throws SQLException {
 	
 		con = new Conexion();
 	
 	}
-	public void insert(Appointment add,String patient) throws SQLException {
-		String sql = "select addappointment (?,?,?,?,?,?,?)";
-		
-		con.conectar();
-		connection = con.getJdbcConnection();
-		  DatabaseMetaData dm = (DatabaseMetaData) connection.getMetaData();
-		System.out.println("Driver name: " + dm.getDriverName()+ "     l     oco");
-		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString (1,add.getId());
-		statement.setString(2,add.getArea());
-		statement.setString(3,add.getDay());
-		statement.setString(3,add.getHour());
-		statement.setString(3,add.getStatus());
-		statement.setString(3,add.getCenter_id());
-		statement.setString(3,patient);
 
-	
-		 System.out.println("Driver name: " + dm.getDriverName()+ "  washa");
+	public User getUser(String id) throws SQLException {
+		User aux = null;
 
-		statement.executeUpdate();
-		
-		 System.out.println("Driver name: " + dm.getDriverName()+ "  washa23");
-		statement.close();
-		con.desconectar();
-	
-		
-	
-	}
-/*	public Categoria obtenerPorId(String id) throws SQLException {
-		Categoria nuevo = null;
-
-		String sql = "SELECT * FROM Categoria WHERE CodigoCategoria= ? ";
+		String sql = "SELECT * FROM getuser(?) ";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
@@ -64,15 +40,45 @@ public class  Appointmentdao {
 
 		ResultSet res = statement.executeQuery();
 		if (res.next()) {
-			nuevo = new Categoria(res.getString("CodigoCategoria"), res.getString("NombreCategoria"), res.getString("Descripcion"),
-					res.getString("Estado"));
+			aux = new User(res.getString("user_name"),"",res.getString("usertype"));
 		}
 		res.close();
 		con.desconectar();
 
-		return nuevo;
+		return aux;
 	}
-	public List<Categoria> listarCategorias() throws SQLException {
+	public void addSession(String id,String type) throws SQLException {
+		User aux = null;
+
+		String sql = "SELECT addSession(?,?) ";
+		con.conectar();
+		connection = con.getJdbcConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, id);
+		statement.setString(2, type);
+
+		statement.executeQuery();
+		
+		statement.close();
+		con.desconectar();
+
+		
+	}
+	public void removeSession() throws SQLException {
+		
+
+		String sql = "SELECT removeSession() ";
+		con.conectar();
+		connection = con.getJdbcConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.executeQuery();
+		
+		statement.close();
+		con.desconectar();
+
+		
+	}
+	/*public List<Categoria> listarCategorias() throws SQLException {
 
 		List<Categoria> listaCategorias = new ArrayList<Categoria>();
 		String sql = "SELECT * FROM Categoria";
