@@ -135,15 +135,9 @@ public class Userdao {
 		return rowActualizar;
 	}*/
 	
-	public static void main (String args[]) {
-		Catalogue nuevo = new Catalogue("755","Fiebre","Paracetamol");
-		
-		try {
-			new Cataloguedao().insert(nuevo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public static void main (String args[]) throws SQLException {
+		Userdao nuevo = new Userdao();
+		System.out.println(nuevo.getUser("rodri").getType());
 	}
 
 }

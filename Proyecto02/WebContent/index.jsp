@@ -27,17 +27,17 @@
 
 	<div class="container register-form">
 		<h2 class="text-left">Please sign in</h2>
-		<form class=form-horizontal action="login?action=access">
+		<form class=form-horizontal action="login?action=access" method="post">
 			<div class=form-group>
-				<label for="inputEmail" class="control-label col-sm-2">Username</label>
+				<label  class="control-label col-sm-2">Username</label>
 				<div class=col-sm-6>
-					<input type="email" id="inputEmail" class="form-control">
+					<input type="text" id="inputName" name="username" class="form-control">
 				</div>
 			</div>
 			<div class=form-group>
 				<label for="inputPassword" class="control-label col-sm-2">Password</label>
 				<div class=col-sm-6>
-					<input type="password" id="inputPassword" class="form-control">
+					<input type="password" id="inputPassword" name="password" class="form-control">
 				</div>
 			</div>
 			

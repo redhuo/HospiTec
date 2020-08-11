@@ -67,6 +67,7 @@ public class Login  extends HttpServlet {
 				loginPatient(request, response);
 				break;
 			case "access":
+				System.out.println("holaaaaaaaaaaaaaaaa");
 				access(request, response);
 				break;
 			default:
@@ -154,14 +155,14 @@ public class Login  extends HttpServlet {
 	private void access(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		//	Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
 		//	request.setAttribute("articulo", articulo);
-		User aux =  user.getUser(request.getParameter("user"));
+		System.out.println("hola  "+ user.getUser(request.getParameter("username").));
+		User aux =  user.getUser(request.getParameter("username"));
 		if (aux!= null) {
 			user.addSession(aux.getUsername(), aux.getType());
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/IndexPatient.jsp");
 			dispatcher.forward(request, response);
 		}
 				
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
+	
 	}
 }
