@@ -24,12 +24,7 @@
 	<div class="container register-form">
 		<h2 class="text-left">Register appointment</h2>
 		<form class=form-horizontal action=/action_page.php>
-			<div class=form-group>
-				<label class="control-label col-sm-2" for=ide>Id:</label>
-				<div class=col-sm-6>
-					<input type="text" class=form-control id=ide name=ide>
-				</div>
-			</div>
+			
 			<div class=form-group>
 				<label class="control-label col-sm-2" for=area>Area:</label>
 				<div class=col-sm-6>
@@ -53,8 +48,8 @@
 				<label class="control-label col-sm-2" for=residencia>Status:</label>
 				<div class=col-sm-6>
 					<select class="form-control" id="estado">
-						<option value="RE">Registrada</option>
-						<option value="CAP">Cancelada por paciente</option>
+						<option value="RE">Registered</option>
+						<option value="CAP">Cancelled by patient</option>
 						<option value="CECA">Cancelada por centro médico</option>
 						<option value="ASIG">Asignada</option>
 						<option value="REA">Realizada</option>

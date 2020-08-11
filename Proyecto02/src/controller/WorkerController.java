@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-@WebServlet("/patient")
-public class PatientController  extends HttpServlet {
+@WebServlet("/worker")
+public class  WorkerController  extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 
@@ -153,7 +153,7 @@ public class PatientController  extends HttpServlet {
 		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/RegistrarCita.jsp");
 		dispatcher.forward(request, response);
 	}
-	private void registerApp2(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+	private void registerApp2 (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
 		//mostrar(request, response);
 		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/RegistrarCita.jsp");
 		dispatcher.forward(request, response);

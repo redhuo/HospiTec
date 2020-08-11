@@ -34,8 +34,7 @@
           <li><a href="#">Add Center </a></li>
           <li><a href="#">View Centers</a></li>
         </ul>
-        <ul>
-      </li>
+     
        <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catalogue
         <span class="caret"></span></a>
@@ -44,9 +43,8 @@
           <li><a href="#">View Catalogue</a></li>
         </ul>
       </li>
-    </ul>
-     <ul>
-      </li>
+    
+    
        <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Worker
         <span class="caret"></span></a>
@@ -54,8 +52,8 @@
           <li><a href="#">View Workers</a></li>
         </ul>
       </li>
-    </ul>
-       <ul>
+   
+     
       </li>
        <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Patient

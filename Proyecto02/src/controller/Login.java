@@ -165,10 +165,26 @@ public class Login  extends HttpServlet {
 		System.out.println("no paso dauh daddy" + aux.getUsername());
 		if (aux!= null) {
 			System.out.println("no paso dauh 11111111");
+			user.removeSession();
 			user.addSession(aux.getUsername(), aux.getType());
 			System.out.println("no paso dauh 123456");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/IndexPatient.jsp");
-			dispatcher.forward(request, response);
+			if(aux.getType().equals("Patient")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/IndexPatient.jsp");
+				dispatcher.forward(request, response);
+			}
+			else if(aux.getType().equals("Doctor")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/IndexDoctor.jsp");
+				dispatcher.forward(request, response);
+			}
+			else if(aux.getType().equals("Nurse")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/IndexNurse.jsp");
+				dispatcher.forward(request, response);
+			}
+			else if(aux.getType().equals("Administrator")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/IndexAdmin.jsp");
+				dispatcher.forward(request, response);
+			}
+		
 			
 		}
 		else {

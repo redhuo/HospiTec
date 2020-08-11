@@ -5,6 +5,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Conexion {
@@ -42,7 +43,7 @@ public class Conexion {
 	}  
 	public static void main(String[] args) {
 		 
-        Connection conn = null;
+       /* Connection conn = null;
  
         try {
  
@@ -70,7 +71,9 @@ public class Conexion {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        }
+        }*/
+		int randomNum = ThreadLocalRandom.current().nextInt(1, 10000 + 1);
+		System.out.println(randomNum);
     }
 			
 }
