@@ -28,11 +28,7 @@
 		</plugins>
 	</build>
 	<dependencies>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.14</version>
-		</dependency>
+		
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -58,5 +54,6 @@
 			<version>4.0.3</version>
 			<scope>runtime</scope>
 		</dependency>
+		
 	</dependencies>
 </project>

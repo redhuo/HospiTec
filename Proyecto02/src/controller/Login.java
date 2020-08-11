@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Model.User;
+import Utils.Conexion;
 import dao.Userdao;
 
 
@@ -161,12 +162,21 @@ public class Login  extends HttpServlet {
 		//	request.setAttribute("articulo", articulo);
 		System.out.println("hola  "+ user.getUser(request.getParameter("username")).getType());
 		User aux =  user.getUser(request.getParameter("username"));
+		System.out.println("no paso dauh daddy" + aux.getUsername());
 		if (aux!= null) {
+			System.out.println("no paso dauh 11111111");
 			user.addSession(aux.getUsername(), aux.getType());
+			System.out.println("no paso dauh 123456");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/IndexPatient.jsp");
 			dispatcher.forward(request, response);
+			
 		}
-				
+		else {
+			System.out.println("no paso dauh 555");
+		}
+
+		
+		
 	
 	}
 }

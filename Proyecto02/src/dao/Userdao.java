@@ -49,19 +49,20 @@ public class Userdao {
 	}
 	public void addSession(String id,String type) throws SQLException {
 		User aux = null;
-
-		String sql = "SELECT addSession(?,?) ";
+		System.out.println("yoyo 1");
+		String sql = "SELECT addSession(?,?)";
 		con.conectar();
+		System.out.println("yoyo 2");
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, id);
 		statement.setString(2, type);
-
+		System.out.println("yoyo 3");
 		statement.executeQuery();
-		
+		System.out.println("yoyo 4");
 		statement.close();
 		con.desconectar();
-
+		
 		
 	}
 	public void removeSession() throws SQLException {
@@ -137,7 +138,7 @@ public class Userdao {
 	
 	public static void main (String args[]) throws SQLException {
 		Userdao nuevo = new Userdao();
-		System.out.println(nuevo.getUser("jperez").getType());
+		System.out.println(nuevo.getUser("rodri").getType());
 	}
 
 }

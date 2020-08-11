@@ -19,7 +19,7 @@ public class Conexion {
 	public void conectar() throws SQLException {
 
         try { 
-        	jdbcConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hospital", "admin", "123456");
+        	jdbcConnection = DriverManager.getConnection("jdbc:postgresql://localhost/Hospital", "admin", "123456");
         	  System.out.println("aqui estoy 2 si" );
         	  DatabaseMetaData dm = (DatabaseMetaData) jdbcConnection.getMetaData();
         }  
