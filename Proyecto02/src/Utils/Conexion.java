@@ -20,14 +20,14 @@ public class Conexion {
 
         try { 
         	jdbcConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hospital", "admin", "123456");
-        	  System.out.println("aqui estoy 2");
+        	  System.out.println("aqui estoy 2 si" );
         	  DatabaseMetaData dm = (DatabaseMetaData) jdbcConnection.getMetaData();
         }  
         catch(SQLException e) {
-        	 System.out.println("aqui estoy 2");
+        	 System.out.println("aqui estoy 2 no");
         }
         System.out.println("aqui estoy ");
-        DatabaseMetaData dm = (DatabaseMetaData) jdbcConnection.getMetaData();
+
 
     }
      

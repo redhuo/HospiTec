@@ -20,6 +20,10 @@ public class Login  extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Userdao user;
 	
+	public Login() throws SQLException {
+		user = new Userdao();
+	}
+	
 
 	
 
@@ -155,7 +159,7 @@ public class Login  extends HttpServlet {
 	private void access(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		//	Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
 		//	request.setAttribute("articulo", articulo);
-		System.out.println("hola  "+ user.getUser(request.getParameter("username").));
+		System.out.println("hola  "+ user.getUser(request.getParameter("username")).getType());
 		User aux =  user.getUser(request.getParameter("username"));
 		if (aux!= null) {
 			user.addSession(aux.getUsername(), aux.getType());

@@ -137,7 +137,7 @@ public class Userdao {
 	
 	public static void main (String args[]) throws SQLException {
 		Userdao nuevo = new Userdao();
-		System.out.println(nuevo.getUser("rodri").getType());
+		System.out.println(nuevo.getUser("jperez").getType());
 	}
 
 }
