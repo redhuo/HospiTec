@@ -47,7 +47,7 @@
 			<div class=form-group>
 				<label class="control-label col-sm-2" for=residencia>Status:</label>
 				<div class=col-sm-6>
-					<select class="form-control" id="estado">
+					<select class="form-control" id="estado" name= estado>
 						<option value="RE">Registered</option>
 						<option value="CAP">Cancelled by patient</option>
 						<option value="CECA">Cancelada por centro médico</option>
@@ -59,7 +59,7 @@
 			<div class=form-group>
 				<label class="control-label col-sm-2" for=code>Center code:</label>
 				<div class=col-sm-6>
-					<input type="text" class=form-control id=code name=code>
+					<input type="text" class=form-control id=code name=centercode>
 				</div>
 			</div>
 			<div class=form-group>
