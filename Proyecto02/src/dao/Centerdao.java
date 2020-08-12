@@ -1,5 +1,6 @@
 package dao;
 
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -10,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.Appointment;
+import Model.Area;
 import Model.Catalogue;
+import Model.Center;
 import Utils.Conexion;
 
 
@@ -25,8 +28,8 @@ public class  Centerdao {
 		con = new Conexion();
 	
 	}
-	public void insert(Center add,Area add2) throws SQLException {
-		String sql = "select addappointment (?,?,?,?,?,?,?)";
+	public void insert(Center add) throws SQLException {
+		String sql = "select addcenter (?,?,?,?,?)";
 		
 		con.conectar();
 		connection = con.getJdbcConnection();
@@ -34,12 +37,10 @@ public class  Centerdao {
 		System.out.println("Driver name: " + dm.getDriverName()+ "     l     oco");
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString (1,add.getId());
-		statement.setString(2,add.getArea());
-		statement.setString(3,add.getDay());
-		statement.setString(3,add.getHour());
-		statement.setString(3,add.getStatus());
-		statement.setString(3,add.getCenter_id());
-		statement.setString(3,patient);
+		statement.setString(2,add.getName());
+		statement.setString(3,add.getType());
+		statement.setInt(4,add.getCapacity());
+		statement.setString(5,add.getDirection());
 
 	
 		 System.out.println("Driver name: " + dm.getDriverName()+ "  washa");
@@ -71,29 +72,27 @@ public class  Centerdao {
 		con.desconectar();
 
 		return nuevo;
-	}
-	public List<Categoria> listarCategorias() throws SQLException {
+	}*/
+	public List<Center> listCenters() throws SQLException {
 
-		List<Categoria> listaCategorias = new ArrayList<Categoria>();
-		String sql = "SELECT * FROM Categoria";
+		List<Center> listcenters = new ArrayList<Center>();
+		String sql = "select * from getcenters()";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		Statement statement = connection.createStatement();
 		ResultSet resulSet = statement.executeQuery(sql);
 
 		while (resulSet.next()) {
-			String id = resulSet.getString("CodigoCategoria");
-			String nombre= resulSet.getString("NombreCategoria");
-			String descripcion = resulSet.getString("Descripcion");
-			String estado= resulSet.getString("Estado");
-
-			Categoria nuevo= new Categoria(id, nombre, descripcion,estado);
-			listaCategorias.add(nuevo);
+			String id = resulSet.getString("auxcenter_id");
+			String nombre= resulSet.getString("auxcenter_name");
+		
+			Center nuevo= new Center(id, nombre, "",0,"");
+			listcenters.add(nuevo);
 		}
 		con.desconectar();
-		return listaCategorias;
+		return listcenters;
 	}
-	
+	/*
 	public boolean eliminar(Categoria nuevo) throws SQLException {
 		boolean rowEliminar = false;
 		String sql = "DELETE FROM Categoria WHERE CodigoCategoria=?";

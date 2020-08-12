@@ -47,6 +47,24 @@ public class Userdao {
 
 		return aux;
 	}
+	
+	public String getSession() throws SQLException {
+		String aux = null;
+
+		String sql = "SELECT * FROM getsession() ";
+		con.conectar();
+		connection = con.getJdbcConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+
+		ResultSet res = statement.executeQuery();
+		if (res.next()) {
+			aux = res.getString("auxusername");
+		}
+		res.close();
+		con.desconectar();
+
+		return aux;
+	}
 	public void addSession(String id,String type) throws SQLException {
 		User aux = null;
 		System.out.println("yoyo 1");
@@ -79,6 +97,7 @@ public class Userdao {
 
 		
 	}
+	
 	/*public List<Categoria> listarCategorias() throws SQLException {
 
 		List<Categoria> listaCategorias = new ArrayList<Categoria>();

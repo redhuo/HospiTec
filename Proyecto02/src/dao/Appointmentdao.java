@@ -36,10 +36,10 @@ public class  Appointmentdao {
 		statement.setString (1,add.getId());
 		statement.setString(2,add.getArea());
 		statement.setString(3,add.getDay());
-		statement.setString(3,add.getHour());
-		statement.setString(3,add.getStatus());
-		statement.setString(3,add.getCenter_id());
-		statement.setString(3,patient);
+		statement.setString(4,add.getHour());
+		statement.setString(5,add.getStatus());
+		statement.setString(6,add.getCenter_id());
+		statement.setString(7,patient);
 
 	
 		 System.out.println("Driver name: " + dm.getDriverName()+ "  washa");
@@ -71,29 +71,28 @@ public class  Appointmentdao {
 		con.desconectar();
 
 		return nuevo;
-	}
-	public List<Categoria> listarCategorias() throws SQLException {
+	}*/
+	public List<Appointment> listAppointments(String id) throws SQLException {
 
-		List<Categoria> listaCategorias = new ArrayList<Categoria>();
-		String sql = "SELECT * FROM Categoria";
+		List<Appointment> listapp = new ArrayList<Appointment>();
+		String sql = "SELECT * FROM getappointments(?) ";
 		con.conectar();
 		connection = con.getJdbcConnection();
-		Statement statement = connection.createStatement();
-		ResultSet resulSet = statement.executeQuery(sql);
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, id);
 
-		while (resulSet.next()) {
-			String id = resulSet.getString("CodigoCategoria");
-			String nombre= resulSet.getString("NombreCategoria");
-			String descripcion = resulSet.getString("Descripcion");
-			String estado= resulSet.getString("Estado");
-
-			Categoria nuevo= new Categoria(id, nombre, descripcion,estado);
-			listaCategorias.add(nuevo);
+		ResultSet res = statement.executeQuery();
+		while (res.next()) {
+			String code = res.getString("appid");
+			String status = res.getString("appstatus");
+			String appday = res.getString("appday");
+		
+			listapp.add(new Appointment(code,"",appday,"",status,""));
 		}
 		con.desconectar();
-		return listaCategorias;
+		return listapp;
 	}
-	
+	/*
 	public boolean eliminar(Categoria nuevo) throws SQLException {
 		boolean rowEliminar = false;
 		String sql = "DELETE FROM Categoria WHERE CodigoCategoria=?";
@@ -108,26 +107,20 @@ public class  Appointmentdao {
 
 		return rowEliminar;
 	}
+	*/
+	public void actualizar(String id,String message) throws SQLException {
 	
-	public boolean actualizar(Categoria nuevo) throws SQLException {
-		boolean rowActualizar = false;
-		String sql = "UPDATE Categoria SET CodigoCategoria=?,NombreCategoria=?,Descripcion=?,Estado=? WHERE CodigoCategoria=?";
+		String sql = "select updateappointment(?,?)";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString (1,nuevo.getCodigoCategoria());
-		statement.setString(2,nuevo.getNombreCategoria());
-		statement.setString(3,nuevo.getDescripcion());
-		statement.setString(4,nuevo.getEstado());
-		statement.setString(5, nuevo.getCodigoCategoria());
-		System.out.println(nuevo.getCodigoCategoria()+ " holaaaaaaaaaaaaaaaa");
-
-		rowActualizar = statement.executeUpdate() > 0;
-		System.out.println(nuevo.getDescripcion()+ " holaaaaaaaaaaaaaaaa "+ rowActualizar ) ;
+		statement.setString (1,id);
+		statement.setString(2,message);
+		statement.executeUpdate();
 		statement.close();
 		con.desconectar();
-		return rowActualizar;
-	}*/
+	
+	}
 	
 	public static void main (String args[]) {
 		Catalogue nuevo = new Catalogue("755","Fiebre","Paracetamol");

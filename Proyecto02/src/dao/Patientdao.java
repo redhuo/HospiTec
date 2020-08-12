@@ -59,25 +59,25 @@ public class Patientdao {
 		
 	
 	}
-/*	public Categoria obtenerPorId(String id) throws SQLException {
-		Categoria nuevo = null;
+	public String getPatientId(String user) throws SQLException {
+		String nuevo = "";
 
-		String sql = "SELECT * FROM Categoria WHERE CodigoCategoria= ? ";
+		String sql = "select *from getpatientid(?) ";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString(1, id);
+		statement.setString(1, user);
 
 		ResultSet res = statement.executeQuery();
 		if (res.next()) {
-			nuevo = new Categoria(res.getString("CodigoCategoria"), res.getString("NombreCategoria"), res.getString("Descripcion"),
-					res.getString("Estado"));
+			nuevo = res.getString("auxpatient_id");
 		}
 		res.close();
 		con.desconectar();
 
 		return nuevo;
 	}
+	/*
 	public List<Categoria> listarCategorias() throws SQLException {
 
 		List<Categoria> listaCategorias = new ArrayList<Categoria>();
