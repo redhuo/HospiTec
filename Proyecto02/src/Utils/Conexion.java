@@ -5,6 +5,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Conexion {
@@ -19,15 +20,15 @@ public class Conexion {
 	public void conectar() throws SQLException {
 
         try { 
-        	jdbcConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hospital", "admin", "123456");
-        	  System.out.println("aqui estoy 2");
+        	jdbcConnection = DriverManager.getConnection("jdbc:postgresql://localhost/Hospital", "admin", "123456");
+        	  System.out.println("aqui estoy 2 si" );
         	  DatabaseMetaData dm = (DatabaseMetaData) jdbcConnection.getMetaData();
         }  
         catch(SQLException e) {
-        	 System.out.println("aqui estoy 2");
+        	 System.out.println("aqui estoy 2 no");
         }
         System.out.println("aqui estoy ");
-        DatabaseMetaData dm = (DatabaseMetaData) jdbcConnection.getMetaData();
+
 
     }
      
@@ -42,7 +43,7 @@ public class Conexion {
 	}  
 	public static void main(String[] args) {
 		 
-        Connection conn = null;
+       /* Connection conn = null;
  
         try {
  
@@ -70,7 +71,9 @@ public class Conexion {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        }
+        }*/
+		int randomNum = ThreadLocalRandom.current().nextInt(1, 10000 + 1);
+		System.out.println(randomNum);
     }
 			
 }

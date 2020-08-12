@@ -29,12 +29,12 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Profile</a></li>
      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Appointments
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
+          <li><a href="patient?action=newapp">Schedule </a></li>
+          <li><a href="#">Cancel</a></li>
+          <li><a href="patient?action=viewapp">List Appointments</a></li>
         </ul>
       </li>
       <li><a href="#">Diagnostics</a></li>

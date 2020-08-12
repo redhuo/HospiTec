@@ -23,11 +23,11 @@
 <body>
 	<div class="container register-form">
 		<h2 class="text-left">Register patient</h2>
-		<form class=form-horizontal action=/action_page.php>
+		<form class=form-horizontal action=patient?action=enterpatient method="post">
 			<div class=form-group>
 				<label class="control-label col-sm-2" for=ide>Id:</label>
 				<div class=col-sm-6>
-					<input type="text" class=form-control id=ide name=ide>
+					<input type="text" class=form-control id=id name=id>
 				</div>
 			</div>
 			<div class=form-group>
@@ -68,8 +68,7 @@
 				<label class="control-label col-sm-2" for=tipo_sangre>Blood
 					type:</label>
 				<div class=col-sm-6>
-					<input type="text" class=form-control id=tipo_sangre
-						name=tipo_sangre>
+					<input type="text" class=form-control id=tipo_sangre name=tipo_sangre>
 				</div>
 			</div>
 			<div class=form-group>
@@ -89,6 +88,12 @@
 				<label class="control-label col-sm-2" for=usuario>Username:</label>
 				<div class=col-sm-6>
 					<input type="text" class=form-control id=usuario name=usuario>
+				</div>
+			</div>
+			<div class=form-group>
+				<label class="control-label col-sm-2" for=usuario>Password:</label>
+				<div class=col-sm-6>
+					<input type="text" class=form-control id=password name=password>
 				</div>
 			</div>
 			<div class=form-group>

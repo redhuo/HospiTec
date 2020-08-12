@@ -10,11 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Model.User;
+import Utils.Conexion;
+import dao.Userdao;
+
 
 
 @WebServlet("/login")
 public class Login  extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Userdao user;
+	
+	public Login() throws SQLException {
+		user = new Userdao();
+	}
 	
 
 	
@@ -61,6 +70,10 @@ public class Login  extends HttpServlet {
 				break;
 			case "patient":
 				loginPatient(request, response);
+				break;
+			case "access":
+				System.out.println("holaaaaaaaaaaaaaaaa");
+				access(request, response);
 				break;
 			default:
 				break;
@@ -143,5 +156,43 @@ public class Login  extends HttpServlet {
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
+	}
+	private void access(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+		//	Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
+		//	request.setAttribute("articulo", articulo);
+		System.out.println("hola  "+ user.getUser(request.getParameter("username")).getType());
+		User aux =  user.getUser(request.getParameter("username"));
+		System.out.println("no paso dauh daddy" + aux.getUsername());
+		if (aux!= null) {
+			System.out.println("no paso dauh 11111111");
+			user.removeSession();
+			user.addSession(aux.getUsername(), aux.getType());
+			System.out.println("no paso dauh 123456");
+			if(aux.getType().equals("Patient")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/IndexPatient.jsp");
+				dispatcher.forward(request, response);
+			}
+			else if(aux.getType().equals("Doctor")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/IndexDoctor.jsp");
+				dispatcher.forward(request, response);
+			}
+			else if(aux.getType().equals("Nurse")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/IndexNurse.jsp");
+				dispatcher.forward(request, response);
+			}
+			else if(aux.getType().equals("Administrator")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/IndexAdmin.jsp");
+				dispatcher.forward(request, response);
+			}
+		
+			
+		}
+		else {
+			System.out.println("no paso dauh 555");
+		}
+
+		
+		
+	
 	}
 }

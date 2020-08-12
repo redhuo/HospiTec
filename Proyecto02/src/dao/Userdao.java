@@ -19,66 +19,86 @@ import Utils.Conexion;
 
 
 
-public class Patientdao {
+public class Userdao {
 	private Conexion con;
 	private Connection connection;
 
-	public Patientdao() throws SQLException {
+	public Userdao() throws SQLException {
 	
 		con = new Conexion();
 	
 	}
-	public void insert(Patient add,User add2) throws SQLException {
-		String sql = "select addpatient (?,?,?,?,?,?,?,?,?,?,?)";
-		
-		con.conectar();
-		connection = con.getJdbcConnection();
-		  DatabaseMetaData dm = (DatabaseMetaData) connection.getMetaData();
-		System.out.println("Driver name: " + dm.getDriverName()+ "     l     oco");
-		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString (1,add.getId());
-		statement.setString(2,add.getName());
-		statement.setString(3,add.getSurname1());
-		statement.setString(4,add.getSurname2());
-		statement.setString(5,add.getEmail());
-		statement.setString(6,add.getNationality());
-		statement.setString(7,add.getBlood());
-		statement.setString(8,add.getState());
-		statement.setString(9,add.getBirth());
-		statement.setString(10,add2.getUsername());
-		statement.setString(11,add2.getPassword());
-	
-		 System.out.println("Driver name: " + dm.getDriverName()+ "  washa");
 
-		statement.executeUpdate();
-		
-		 System.out.println("Driver name: " + dm.getDriverName()+ "  washa23");
-		statement.close();
-		con.desconectar();
-	
-		
-	
-	}
-	public String getPatientId(String user) throws SQLException {
-		String nuevo = "";
+	public User getUser(String id) throws SQLException {
+		User aux = null;
 
-		String sql = "select *from getpatientid(?) ";
+		String sql = "SELECT * FROM getuser(?) ";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString(1, user);
+		statement.setString(1, id);
 
 		ResultSet res = statement.executeQuery();
 		if (res.next()) {
-			nuevo = res.getString("auxpatient_id");
+			aux = new User(res.getString("user_name"),"",res.getString("usertype"));
 		}
 		res.close();
 		con.desconectar();
 
-		return nuevo;
+		return aux;
 	}
-	/*
-	public List<Categoria> listarCategorias() throws SQLException {
+	
+	public String getSession() throws SQLException {
+		String aux = null;
+
+		String sql = "SELECT * FROM getsession() ";
+		con.conectar();
+		connection = con.getJdbcConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+
+		ResultSet res = statement.executeQuery();
+		if (res.next()) {
+			aux = res.getString("auxusername");
+		}
+		res.close();
+		con.desconectar();
+
+		return aux;
+	}
+	public void addSession(String id,String type) throws SQLException {
+		User aux = null;
+		System.out.println("yoyo 1");
+		String sql = "SELECT addSession(?,?)";
+		con.conectar();
+		System.out.println("yoyo 2");
+		connection = con.getJdbcConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, id);
+		statement.setString(2, type);
+		System.out.println("yoyo 3");
+		statement.executeQuery();
+		System.out.println("yoyo 4");
+		statement.close();
+		con.desconectar();
+		
+		
+	}
+	public void removeSession() throws SQLException {
+		
+
+		String sql = "SELECT removeSession() ";
+		con.conectar();
+		connection = con.getJdbcConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.executeQuery();
+		
+		statement.close();
+		con.desconectar();
+
+		
+	}
+	
+	/*public List<Categoria> listarCategorias() throws SQLException {
 
 		List<Categoria> listaCategorias = new ArrayList<Categoria>();
 		String sql = "SELECT * FROM Categoria";
@@ -135,15 +155,9 @@ public class Patientdao {
 		return rowActualizar;
 	}*/
 	
-	public static void main (String args[]) {
-		Catalogue nuevo = new Catalogue("755","Fiebre","Paracetamol");
-		
-		try {
-			new Cataloguedao().insert(nuevo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public static void main (String args[]) throws SQLException {
+		Userdao nuevo = new Userdao();
+		System.out.println(nuevo.getUser("rodri").getType());
 	}
 
 }

@@ -1,5 +1,6 @@
 package dao;
 
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -10,37 +11,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.Appointment;
+import Model.Area;
 import Model.Catalogue;
+import Model.Center;
 import Utils.Conexion;
 
 
 
 
-public class  Appointmentdao {
+public class  Areadao {
 	private Conexion con;
 	private Connection connection;
 
-	public Appointmentdao() throws SQLException {
+	public Areadao() throws SQLException {
 	
 		con = new Conexion();
 	
 	}
-	public void insert(Appointment add,String patient) throws SQLException {
-		String sql = "select addappointment (?,?,?,?,?,?,?)";
+	public void insert(Area add,String centerid) throws SQLException {
+		String sql = "select addarea (?,?,?)";
 		
 		con.conectar();
 		connection = con.getJdbcConnection();
 		  DatabaseMetaData dm = (DatabaseMetaData) connection.getMetaData();
 		System.out.println("Driver name: " + dm.getDriverName()+ "     l     oco");
 		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString (1,add.getId());
-		statement.setString(2,add.getArea());
-		statement.setString(3,add.getDay());
-		statement.setString(4,add.getHour());
-		statement.setString(5,add.getStatus());
-		statement.setString(6,add.getCenter_id());
-		statement.setString(7,patient);
-
+		statement.setString (1,add.getCode());
+		statement.setString(2,add.getName());
+		statement.setString(3,centerid);
+	
 	
 		 System.out.println("Driver name: " + dm.getDriverName()+ "  washa");
 
@@ -72,25 +71,25 @@ public class  Appointmentdao {
 
 		return nuevo;
 	}*/
-	public List<Appointment> listAppointments(String id) throws SQLException {
+	public List<Area> listAreas() throws SQLException {
 
-		List<Appointment> listapp = new ArrayList<Appointment>();
-		String sql = "SELECT * FROM getappointments(?) ";
+		List<Area> listareas = new ArrayList<Area>();
+		String sql = "select * from getareas()";
 		con.conectar();
 		connection = con.getJdbcConnection();
-		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString(1, id);
+		Statement statement = connection.createStatement();
+		ResultSet resulSet = statement.executeQuery(sql);
 
-		ResultSet res = statement.executeQuery();
-		while (res.next()) {
-			String code = res.getString("appid");
-			String status = res.getString("appstatus");
-			String appday = res.getString("appday");
-		
-			listapp.add(new Appointment(code,"",appday,"",status,""));
+		while (resulSet.next()) {
+			String id = resulSet.getString("auxarea_id");
+			String nombre= resulSet.getString("auxarea_name");
+			
+			Area nuevo= new Area(nombre,id);
+			System.out.println(id+nombre);
+			listareas.add(nuevo);
 		}
 		con.desconectar();
-		return listapp;
+		return listareas;
 	}
 	/*
 	public boolean eliminar(Categoria nuevo) throws SQLException {
@@ -107,20 +106,26 @@ public class  Appointmentdao {
 
 		return rowEliminar;
 	}
-	*/
-	public void actualizar(String id,String message) throws SQLException {
 	
-		String sql = "select updateappointment(?,?)";
+	public boolean actualizar(Categoria nuevo) throws SQLException {
+		boolean rowActualizar = false;
+		String sql = "UPDATE Categoria SET CodigoCategoria=?,NombreCategoria=?,Descripcion=?,Estado=? WHERE CodigoCategoria=?";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString (1,id);
-		statement.setString(2,message);
-		statement.executeUpdate();
+		statement.setString (1,nuevo.getCodigoCategoria());
+		statement.setString(2,nuevo.getNombreCategoria());
+		statement.setString(3,nuevo.getDescripcion());
+		statement.setString(4,nuevo.getEstado());
+		statement.setString(5, nuevo.getCodigoCategoria());
+		System.out.println(nuevo.getCodigoCategoria()+ " holaaaaaaaaaaaaaaaa");
+
+		rowActualizar = statement.executeUpdate() > 0;
+		System.out.println(nuevo.getDescripcion()+ " holaaaaaaaaaaaaaaaa "+ rowActualizar ) ;
 		statement.close();
 		con.desconectar();
-	
-	}
+		return rowActualizar;
+	}*/
 	
 	public static void main (String args[]) {
 		Catalogue nuevo = new Catalogue("755","Fiebre","Paracetamol");

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+    
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,18 +26,18 @@
 <body>
 	<div class="container register-form">
 		<h2 class="text-left">Register appointment</h2>
-		<form class=form-horizontal action=/action_page.php>
-			<div class=form-group>
-				<label class="control-label col-sm-2" for=ide>Id:</label>
-				<div class=col-sm-6>
-					<input type="text" class=form-control id=ide name=ide>
-				</div>
-			</div>
+		<form class=form-horizontal action=patient?action=enterapp method="post">
+			
 			<div class=form-group>
 				<label class="control-label col-sm-2" for=area>Area:</label>
 				<div class=col-sm-6>
-					<input type="text" class=form-control id=area name=area>
-				</div>
+				<select class="form-control" name="area" id="area" >
+					<c:forEach var="articulo2" items="${list2}">
+				    <option value="${articulo2.getCode()}">${articulo2.getName()}</option>
+				
+				    </c:forEach>
+				  </select>
+			</div>
 			</div>
 			<div class=form-group>
 				<label class="control-label col-sm-2" for=fecha>Date:</label>
@@ -52,9 +55,9 @@
 			<div class=form-group>
 				<label class="control-label col-sm-2" for=residencia>Status:</label>
 				<div class=col-sm-6>
-					<select class="form-control" id="estado">
-						<option value="RE">Registrada</option>
-						<option value="CAP">Cancelada por paciente</option>
+					<select class="form-control" id="estado" name= estado>
+						<option value="RE">Registered</option>
+						<option value="CAP">Cancelled by patient</option>
 						<option value="CECA">Cancelada por centro médico</option>
 						<option value="ASIG">Asignada</option>
 						<option value="REA">Realizada</option>
@@ -62,15 +65,21 @@
 				</div>
 			</div>
 			<div class=form-group>
-				<label class="control-label col-sm-2" for=code>Center code:</label>
+				<label class="control-label col-sm-2" for=code>Center:</label>
 				<div class=col-sm-6>
-					<input type="text" class=form-control id=code name=code>
-				</div>
+				<select class="form-control" name="center" id="center" >
+					<c:forEach var="articulo" items="${list}">
+					8/+
+				    <option value="${articulo.getId()}">${articulo.getName()}</option>
+				
+				    </c:forEach>
+				  </select>
 			</div>
 			<div class=form-group>
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type=Guardar class="btn btn-lg btn-primary">Submit</button>
 				</div>
+			</div>
 			</div>
 		</form>
 	</div>

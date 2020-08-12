@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,46 +28,49 @@
       <a class="navbar-brand" href="#">Hospitec</a>
     </div>
     <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Profile</a></li>
      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Centers
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Appointments
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Add Center </a></li>
-          <li><a href="#">View Centers</a></li>
-        </ul>
-     
-       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catalogue
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Add Catalaogue </a></li>
-          <li><a href="#">View Catalogue</a></li>
+          <li><a href="patient?action=newapp">Schedule </a></li>
+          <li><a href="#">List Appointments</a></li>
         </ul>
       </li>
-    
-    
-       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Worker
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">View Workers</a></li>
-        </ul>
-      </li>
-   
-     
-      </li>
-       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Patient
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">View Patients</a></li>
-        </ul>
-      </li>
+      <li><a href="#">Diagnostics</a></li>
+      <li><a href="#">Treatments</a></li>
+       <li><a href="#">Hospitalizations</a></li>
+        <li><a href="#">Sign out</a></li>
     </ul>
   </div>
 </nav>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+<table border="1" width="100%">
+		<tr>
+		 <td> ID</td>
+		 <td> DAY</td>
+		 <td> Status</td>
+		
+		 <td colspan=2>Actions</td>
+		</tr>
+		<c:forEach var="articulo" items="${list}">
+			<tr>
+				<td><c:out value="${articulo.getId()}"/></td>
+				<td><c:out value="${articulo.getDay()}"/></td>
+				<td><c:out value="${articulo.getStatus()}"/></td>
+				<td><form action="patient?action=cancelapp" method="post">
+    			<button type="submit" class="btn-link" value="${articulo.getId()}" name=cancel >Cancel</button>
+				</form></td>
+				
+				
+				
+						
+			</tr>
+		</c:forEach>
+	</table>
+
 </body>
 </html>
