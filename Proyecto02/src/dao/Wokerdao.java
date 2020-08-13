@@ -29,10 +29,12 @@ public class Wokerdao {
 		con = new Conexion();
 	
 	}
-	public void insert(Worker add,User add2,String center) throws SQLException {
-		String sql = "select addpatient (?,?,?,?,?,?,?,?,?,?,?)";
+	public void insert(Worker add,User add2,String center,String area) {
+		String sql = "select addworker(?,?,?,?,?,?,?,?,?,?)";
 		
-		con.conectar();
+		try {
+			con.conectar();
+		
 		connection = con.getJdbcConnection();
 		  DatabaseMetaData dm = (DatabaseMetaData) connection.getMetaData();
 		System.out.println("Driver name: " + dm.getDriverName()+ "     l     oco");
@@ -46,6 +48,7 @@ public class Wokerdao {
 		statement.setString(7,add2.getUsername());
 		statement.setString(8,add2.getPassword());
 		statement.setString(9,center);
+		statement.setString(10,area);
 	
 		 System.out.println("Driver name: " + dm.getDriverName()+ "  washa");
 
@@ -55,7 +58,10 @@ public class Wokerdao {
 		statement.close();
 		con.desconectar();
 	
-		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
 	}
 /*	public Categoria obtenerPorId(String id) throws SQLException {

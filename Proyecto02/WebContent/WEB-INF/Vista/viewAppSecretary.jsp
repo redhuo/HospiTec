@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,8 +29,7 @@
     </div>
     <ul class="nav navbar-nav">
 
-       <li><a href="worker?action=attendapp">Attend Apointment</a></li>
-      <li><a href="worker?action=viewapp">View Appointments</a></li>
+      <li><a href="#">View Appointments</a></li>
       <li><a href="#">Schedule Appointment</a></li>
         <li><a href="#">Sign out</a></li>
     </ul>

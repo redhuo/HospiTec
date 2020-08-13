@@ -33,7 +33,7 @@
 				<div class=col-sm-6>
 				<select class="form-control" name="area" id="area" >
 					<c:forEach var="articulo2" items="${list2}">
-				    <option value="${articulo2.getCode()}">${articulo2.getName()}</option>
+				    <option value="${articulo2.getCode()}">${articulo2.getName()}-${articulo2.getCode()}</option>
 				
 				    </c:forEach>
 				  </select>
@@ -70,7 +70,7 @@
 				<select class="form-control" name="center" id="center" >
 					<c:forEach var="articulo" items="${list}">
 					8/+
-				    <option value="${articulo.getId()}">${articulo.getName()}</option>
+				    <option value="${articulo.getId()}">${articulo.getName()}-${articulo.getId()}</option>
 				
 				    </c:forEach>
 				  </select>

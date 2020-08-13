@@ -14,6 +14,7 @@ import java.util.List;
 import Model.Catalogue;
 import Model.Patient;
 import Model.User;
+import Model.WAC;
 import Utils.Conexion;
 
 
@@ -41,6 +42,24 @@ public class Userdao {
 		ResultSet res = statement.executeQuery();
 		if (res.next()) {
 			aux = new User(res.getString("user_name"),"",res.getString("usertype"));
+		}
+		res.close();
+		con.desconectar();
+
+		return aux;
+	}
+	public WAC getUserAreaCenter(String id) throws SQLException {
+		WAC aux = null;
+
+		String sql = "SELECT * FROM getareaworker(?)";
+		con.conectar();
+		connection = con.getJdbcConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, id);
+
+		ResultSet res = statement.executeQuery();
+		if (res.next()) {
+			aux = new WAC(res.getString("workerid"),res.getString("areaid"),res.getString("centerid"));
 		}
 		res.close();
 		con.desconectar();

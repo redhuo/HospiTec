@@ -12,12 +12,43 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Model.Appointment;
+import Model.Area;
+import Model.Catalogue;
+import Model.Center;
+import Model.User;
+import Model.Worker;
+import dao.Appointmentdao;
+import dao.Areadao;
+import dao.Cataloguedao;
+import dao.Centerdao;
+import dao.Patientdao;
+import dao.Userdao;
+import dao.Wokerdao;
+
 
 
 @WebServlet("/worker")
 public class  WorkerController  extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Centerdao center;
+	Areadao area;
+	Appointmentdao appdao;
+	Patientdao patient;
+	Userdao user;
+	Wokerdao worker;
+	Cataloguedao catalogue;
 	
+	public WorkerController() throws SQLException {
+		center = new Centerdao();
+		area = new Areadao();
+		appdao= new Appointmentdao();
+		patient= new Patientdao();
+		user = new Userdao();
+		worker = new Wokerdao();
+		catalogue = new Cataloguedao();
+		
+	}
 
 	
 
@@ -38,37 +69,27 @@ public class  WorkerController  extends HttpServlet {
 			switch (action) {
 			case "type":
 				index(request, response);
-				break;
-			case "nuevo":
-				nuevo(request, response);
-				break;
-			case "register":
-				System.out.println("entro");
-				registrar(request, response);
-				break;
-			case "mostrar":
-				mostrar(request, response);
-				break;
-			case "showedit":
-				showEditar(request, response);
-				break;	
-			case "editar":
-				editar(request, response);
-				break;
-			case "eliminar":
-				eliminar(request, response);
-				break;
+				break;		
 			case "worker":
 				registerWorker(request, response);
 				break;
-			case "patient":
-				registerPatient(request, response);
+			case "enterworker":
+				registerWorker2(request, response);
 				break;
 			case "newapp":
 				registerApp(request, response);
 				break;
 			case "enterapp":
 				registerApp2(request, response);
+				break;
+			case "viewapp":
+				showApp(request, response);
+				break;
+			case "attendapp":
+				attendApp(request, response);
+				break;
+			case "attendapp2":
+				attendApp2(request, response);
 				break;
 			default:
 				break;
@@ -96,66 +117,87 @@ public class  WorkerController  extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private void registrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		//Articulo articulo = new Articulo(0, request.getParameter("codigo"), request.getParameter("nombre"), request.getParameter("descripcion"),request.getParameter("cantidad"),request.getParameter("precio"));
-		//articuloDAO.insertar(articulo);
-		System.out.println("aqui");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void nuevo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vista/RegistrarFuncionario.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	
-	private void mostrar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException , ServletException{
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/mostrar.jsp");
-	/*	List<Articulo> listaArticulos= articuloDAO.listarArticulos();
-		request.setAttribute("lista", listaArticulos);*/
-		dispatcher.forward(request, response);
-	}	
-	
-	private void showEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-	//	Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-	//	request.setAttribute("articulo", articulo);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/editar.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void editar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-	//	Articulo articulo = new Articulo(Integer.parseInt(request.getParameter("id")), request.getParameter("codigo"), request.getParameter("nombre"), request.getParameter("descripcion"),request.getParameter("existencia"), request.getParameter("precio"));
-		//articuloDAO.actualizar(articulo);
-		index(request, response);
-	}
-	
-	private void eliminar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-		//Articulo articulo = articuloDAO.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-		//articuloDAO.eliminar(articulo);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
-		
-	}
+
 	private void registerWorker (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
 		//mostrar(request, response);
+		List<Center> centers = center.listCenters();
+		List<Area> areas = area.listAreas();
+		request.setAttribute("list", centers);
+		request.setAttribute("list2", areas);
 		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/RegistrarFuncionario.jsp");
 		dispatcher.forward(request, response);
 	}
-	private void registerPatient (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+	private void registerWorker2 (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
 		//mostrar(request, response);
-		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/RegistrarPaciente.jsp");
+		Worker aux = new Worker(request.getParameter("id"),request.getParameter("nombre"),request.getParameter("apellido1"),
+						request.getParameter("apellido2"),request.getParameter("type"),request.getParameter("fecha"));
+		User aux2 = new User(request.getParameter("usuario"),request.getParameter("password"),request.getParameter("type"));
+		worker.insert(aux, aux2, request.getParameter("center"),request.getParameter("area"));
+		String site = "";
+		if(request.getParameter("type").equals("Doctor")) {
+			site = "/WEB-INF/Vista/IndexDoctor.jsp";
+		}
+		else if (request.getParameter("type").equals("Nurse")) {
+			site = "/WEB-INF/Vista/IndexNurse.jsp";
+		}
+		else if (request.getParameter("type").equals("Secretary")) {
+			site = "/WEB-INF/Vista/IndexSecretary.jsp";
+		}
+		RequestDispatcher dispatcher= request.getRequestDispatcher(site);
 		dispatcher.forward(request, response);
 	}
+
 	private void registerApp (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-		//mostrar(request, response);
+		
 		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/RegistrarCita.jsp");
 		dispatcher.forward(request, response);
 	}
 	private void registerApp2 (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-		//mostrar(request, response);
+		
 		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/RegistrarCita.jsp");
+		dispatcher.forward(request, response);
+	}
+	private void showApp (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		String doctor ="/WEB-INF/Vista/viewAppDoctor.jsp";
+		String nurse="/WEB-INF/Vista/viewAppNurse.jsp";
+		String secretary="/WEB-INF/Vista/viewAppSecretary.jsp";
+		String job = "";
+		System.out.println("yolo "+user.getUserAreaCenter(user.getSession()).getArea());
+		System.out.println("yolo2 "+user.getUserAreaCenter(user.getSession()).getCenter());
+		List<Appointment> apps = appdao.listAllAppointments(user.getUserAreaCenter(user.getSession()).getArea(), user.getUserAreaCenter(user.getSession()).getCenter());
+		request.setAttribute("list", apps);
+		System.out.println("yoooooooooooooooooooooo hahha "+user.getUserAreaCenter(user.getSession()).getCenter());
+		if(user.getUser(user.getSession()).getType().equals("Doctor")) {
+			job=doctor;
+		}
+		else if(user.getUser(user.getSession()).getType().equals("Nurse")) {
+			job=nurse;
+		}
+		else if(user.getUser(user.getSession()).getType().equals("Doctor")) {
+			job=secretary;
+		}
+		RequestDispatcher dispatcher= request.getRequestDispatcher(job);
+		dispatcher.forward(request, response);
+	}
+	private void attendApp (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		//mostrar(request, response);
+
+		List<Appointment> apps = appdao.listAllAppointments(user.getUserAreaCenter(user.getSession()).getArea(), user.getUserAreaCenter(user.getSession()).getCenter());
+		request.setAttribute("list", apps);
+		System.out.println("yoooooooooooooooooooooo hahha "+user.getUserAreaCenter(user.getSession()).getCenter());
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/AttendPatient.jsp");
+		dispatcher.forward(request, response);
+	}
+	private void attendApp2 (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+	
+		String aux = request.getParameter("attend");
+		//List<Appointment> apps = appdao.listAllAppointments(user.getUserAreaCenter(user.getSession()).getArea(), user.getUserAreaCenter(user.getSession()).getCenter());
+	//	request.setAttribute("list", apps);
+		//System.out.println("yoooooooooooooooooooooo hahha "+user.getUserAreaCenter(user.getSession()).getCenter());
+		List<Catalogue> aux2 = catalogue.listCatalogue();
+		request.setAttribute("patientid", aux);
+		request.setAttribute("list", aux2);
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/RegistrarDiagnostico.jsp");
 		dispatcher.forward(request, response);
 	}
 }

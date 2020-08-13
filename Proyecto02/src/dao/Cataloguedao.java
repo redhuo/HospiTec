@@ -25,7 +25,7 @@ public class Cataloguedao {
 	
 	}
 	public void insert(Catalogue add) throws SQLException {
-		String sql = "select addcatalogue (?,?,?)";
+		String sql = "select addcatalogue (?,?)";
 		
 		con.conectar();
 		connection = con.getJdbcConnection();
@@ -34,7 +34,6 @@ public class Cataloguedao {
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString (1,add.getId());
 		statement.setString(2,add.getName());
-		statement.setString(3,add.getTreat());
 
 	
 		 System.out.println("Driver name: " + dm.getDriverName()+ "  washa");
@@ -67,28 +66,28 @@ public class Cataloguedao {
 
 		return nuevo;
 	}
-	public List<Categoria> listarCategorias() throws SQLException {
+	*/
+	public List<Catalogue> listCatalogue() throws SQLException {
 
-		List<Categoria> listaCategorias = new ArrayList<Categoria>();
-		String sql = "SELECT * FROM Categoria";
+		List<Catalogue> listCatalogue = new ArrayList<Catalogue>();
+		String sql = "SELECT * FROM getcatalogue()";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		Statement statement = connection.createStatement();
 		ResultSet resulSet = statement.executeQuery(sql);
 
 		while (resulSet.next()) {
-			String id = resulSet.getString("CodigoCategoria");
-			String nombre= resulSet.getString("NombreCategoria");
-			String descripcion = resulSet.getString("Descripcion");
-			String estado= resulSet.getString("Estado");
+			String id = resulSet.getString("auxcat_id");
+			String nombre= resulSet.getString("auxcat_name");
+		
 
-			Categoria nuevo= new Categoria(id, nombre, descripcion,estado);
-			listaCategorias.add(nuevo);
+			Catalogue nuevo= new Catalogue(id, nombre,"");
+			listCatalogue.add(nuevo);
 		}
 		con.desconectar();
-		return listaCategorias;
+		return listCatalogue;
 	}
-	
+	/*
 	public boolean eliminar(Categoria nuevo) throws SQLException {
 		boolean rowEliminar = false;
 		String sql = "DELETE FROM Categoria WHERE CodigoCategoria=?";

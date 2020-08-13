@@ -56,7 +56,7 @@
 			</div>
 			<div class = "row">
 			<button class="btn btn-lg btn-primary type="submit">Sign in</button>
-			<a href="register?action=worker" class="btn btn-primary stretched-link">Register</a>
+			<a href="worker?action=worker" class="btn btn-primary stretched-link">Register</a>
 			</div>
 		</form>
 

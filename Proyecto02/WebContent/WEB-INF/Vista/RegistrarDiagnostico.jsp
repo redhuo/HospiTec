@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,23 +26,33 @@
 		<h2 class="text-left">Register diagnostic</h2>
 		<form class=form-horizontal action=/action_page.php>
 			<div class=form-group>
-				<label class="control-label col-sm-2" for=nivel>Level:</label>
+				<label class="control-label col-sm-2" for=residencia>Level:</label>
 				<div class=col-sm-6>
-					<input type="text" class=form-control id=nivel name=nivel>
+					<select class="form-control" id="estado" name= estado>
+						<option value="Mild">Mild</option>
+						<option value="Moderate">Moderate</option>
+						<option value="Serious">Serious</option>
+				
+					</select>
 				</div>
 			</div>
 			<div class=form-group>
-				<label class="control-label col-sm-2" for=catalogo>Catalog
-					id:</label>
+				<label class="control-label col-sm-2" for=code>Catalogue:</label>
 				<div class=col-sm-6>
-					<input type="text" class=form-control id=catalogo name=catalogo>
-				</div>
+				<select class="form-control" name="center" id="center" >
+					<c:forEach var="articulo" items="${list}">
+					
+				    <option value="${articulo.getId()}">${articulo.getName()}</option>
+				
+				    </c:forEach>
+				  </select>
+			</div>
 			</div>
 			<div class=form-group>
 				<label class="control-label col-sm-2" for=paciente>Patient
 					id:</label>
 				<div class=col-sm-6>
-					<input type="text" class=form-control id=paciente name=paciente>
+					<input type="text" class=form-control id=paciente name=paciente>${patientid}</input>
 				</div>
 			</div>
 			<div class=form-group>

@@ -28,8 +28,7 @@
     </div>
     <ul class="nav navbar-nav">
 
-       <li><a href="worker?action=attendapp">Attend Apointment</a></li>
-      <li><a href="worker?action=viewapp">View Appointments</a></li>
+      <li><a href="#">View Appointments</a></li>
       <li><a href="#">Schedule Appointment</a></li>
         <li><a href="#">Sign out</a></li>
     </ul>

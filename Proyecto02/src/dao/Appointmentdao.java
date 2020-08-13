@@ -92,6 +92,27 @@ public class  Appointmentdao {
 		con.desconectar();
 		return listapp;
 	}
+	public List<Appointment> listAllAppointments(String area,String center) throws SQLException {
+
+		List<Appointment> listapp = new ArrayList<Appointment>();
+		String sql = "SELECT * FROM getappointmentsworker(?,?) ";
+		con.conectar();
+		connection = con.getJdbcConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, area);
+		statement.setString(2, center);
+
+		ResultSet res = statement.executeQuery();
+		while (res.next()) {
+			String code = res.getString("appid");
+			String status = res.getString("appstatus");
+			String appday = res.getString("appday");
+		
+			listapp.add(new Appointment(code,"",appday,"",status,""));
+		}
+		con.desconectar();
+		return listapp;
+	}
 	/*
 	public boolean eliminar(Categoria nuevo) throws SQLException {
 		boolean rowEliminar = false;
