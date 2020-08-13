@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Model.Center;
 import Model.Patient;
+import Model.Treatment;
 import Model.User;
 import Model.Appointment;
 import Model.Area;
@@ -179,10 +180,10 @@ public class PatientController  extends HttpServlet {
 	}
 	private void showTreat (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
 		//mostrar(request, response);
-		List<Appointment> apps = appdao.listAppointments(patient.getPatientId(user.getSession()));
+		List<Treatment> apps = patient.listTreat(patient.getPatientId(user.getSession()));
 	
 		request.setAttribute("list", apps);
-		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/viewAppointments.jsp");
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/ViewTreatment.jsp");
 		dispatcher.forward(request, response);
 	}
 }

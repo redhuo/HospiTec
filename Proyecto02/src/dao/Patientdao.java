@@ -106,8 +106,8 @@ public class Patientdao {
 	}
 	public List<Treatment> listTreat(String id){
 		
-		List<CatTreat> listCatalogue = new ArrayList<CatTreat>();
-		String sql = "SELECT * from gettreatments(?)";
+		List<Treatment> listCatalogue = new ArrayList<Treatment>();
+		String sql = "SELECT * from gettreatmentspatient(?)";
 		try {
 			con.conectar();
 		
@@ -117,7 +117,7 @@ public class Patientdao {
 
 		ResultSet res = statement.executeQuery();
 		while (res.next()) {
-			CatTreat nuevo =new CatTreat(res.getString("auxcatid"),res.getString("auxtreat"));
+			Treatment nuevo =new Treatment(id,res.getString("auxtreat"),res.getString("auxtreat"),res.getString("auxtype"));
 			listCatalogue.add(nuevo);
 		}
 		res.close();
