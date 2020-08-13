@@ -11,6 +11,8 @@ import java.util.List;
 
 import Model.Appointment;
 import Model.Catalogue;
+import Model.PatientApp;
+import Model.WAC;
 import Utils.Conexion;
 
 
@@ -53,10 +55,10 @@ public class  Appointmentdao {
 		
 	
 	}
-/*	public Categoria obtenerPorId(String id) throws SQLException {
-		Categoria nuevo = null;
+	public PatientApp obtainPatientId(String id) throws SQLException {
+		PatientApp nuevo = null;
 
-		String sql = "SELECT * FROM Categoria WHERE CodigoCategoria= ? ";
+		String sql = "SELECT * FROM getpatientapp(?) ";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
@@ -64,14 +66,13 @@ public class  Appointmentdao {
 
 		ResultSet res = statement.executeQuery();
 		if (res.next()) {
-			nuevo = new Categoria(res.getString("CodigoCategoria"), res.getString("NombreCategoria"), res.getString("Descripcion"),
-					res.getString("Estado"));
+			nuevo = new PatientApp(res.getString("auxpatientid"), res.getString("auxappid"));
 		}
 		res.close();
 		con.desconectar();
 
 		return nuevo;
-	}*/
+	}
 	public List<Appointment> listAppointments(String id) throws SQLException {
 
 		List<Appointment> listapp = new ArrayList<Appointment>();
@@ -93,6 +94,27 @@ public class  Appointmentdao {
 		return listapp;
 	}
 	public List<Appointment> listAllAppointments(String area,String center) throws SQLException {
+
+		List<Appointment> listapp = new ArrayList<Appointment>();
+		String sql = "SELECT * FROM getappointmentsworker(?,?) ";
+		con.conectar();
+		connection = con.getJdbcConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, area);
+		statement.setString(2, center);
+
+		ResultSet res = statement.executeQuery();
+		while (res.next()) {
+			String code = res.getString("appid");
+			String status = res.getString("appstatus");
+			String appday = res.getString("appday");
+		
+			listapp.add(new Appointment(code,"",appday,"",status,""));
+		}
+		con.desconectar();
+		return listapp;
+	}
+	public List<Appointment> listAllAppointmentsAv(String area,String center) throws SQLException {
 
 		List<Appointment> listapp = new ArrayList<Appointment>();
 		String sql = "SELECT * FROM getappointmentsworker(?,?) ";

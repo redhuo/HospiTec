@@ -80,6 +80,9 @@ public class PatientController  extends HttpServlet {
 			case "cancelapp":
 				cancelApp(request, response);
 				break;
+			case "viewtreat":
+				showTreat(request, response);
+				break;
 			default:
 				break;
 			}			
@@ -149,7 +152,7 @@ public class PatientController  extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/IndexPatient.jsp");
+		RequestDispatcher dispatcher= request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 	}
 	
@@ -172,6 +175,14 @@ public class PatientController  extends HttpServlet {
 		}
 	
 		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/IndexPatient.jsp");
+		dispatcher.forward(request, response);
+	}
+	private void showTreat (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		//mostrar(request, response);
+		List<Appointment> apps = appdao.listAppointments(patient.getPatientId(user.getSession()));
+	
+		request.setAttribute("list", apps);
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/viewAppointments.jsp");
 		dispatcher.forward(request, response);
 	}
 }

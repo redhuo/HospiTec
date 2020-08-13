@@ -162,7 +162,7 @@ public class Login  extends HttpServlet {
 		//	request.setAttribute("articulo", articulo);
 		System.out.println("hola  "+ user.getUser(request.getParameter("username")).getType());
 		User aux =  user.getUser(request.getParameter("username"));
-		System.out.println("no paso dauh daddy" + aux.getUsername());
+		
 		if (aux!= null) {
 			System.out.println("no paso dauh 11111111");
 			user.removeSession();

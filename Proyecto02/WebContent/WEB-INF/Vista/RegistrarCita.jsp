@@ -69,7 +69,7 @@
 				<div class=col-sm-6>
 				<select class="form-control" name="center" id="center" >
 					<c:forEach var="articulo" items="${list}">
-					8/+
+					
 				    <option value="${articulo.getId()}">${articulo.getName()}-${articulo.getId()}</option>
 				
 				    </c:forEach>

@@ -29,8 +29,8 @@
     </div>
     <ul class="nav navbar-nav">
 
-       <li><a href="#">Attend Apointment</a></li>
-      <li><a href="#">View Appointments</a></li>
+      <li><a href="worker?action=attendapp">Attend Apointment</a></li>
+      <li><a href="worker?action=viewapp">View Appointments</a></li>
       <li><a href="#">Schedule Appointment</a></li>
         <li><a href="#">Sign out</a></li>
     </ul>
@@ -53,7 +53,7 @@
 				<td><c:out value="${articulo.getId()}"/></td>
 				<td><c:out value="${articulo.getDay()}"/></td>
 				<td><c:out value="${articulo.getStatus()}"/></td>
-				<td><form action="patient?action=cancelapp" method="post">
+				<td><form action="worker?action=cancelapp" method="post">
     			<button type="submit" class="btn-link" value="${articulo.getId()}" name=cancel >Cancel</button>
 				</form></td>
 				

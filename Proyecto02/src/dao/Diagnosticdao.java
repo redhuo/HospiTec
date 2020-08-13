@@ -1,5 +1,6 @@
 package dao;
 
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -9,32 +10,40 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import Model.CatTreat;
+
+
+import Model.Appointment;
+import Model.Area;
 import Model.Catalogue;
+import Model.Center;
+import Model.Diagnostic;
 import Utils.Conexion;
 
 
 
 
-public class Cataloguedao {
+public class  Diagnosticdao {
 	private Conexion con;
 	private Connection connection;
 
-	public Cataloguedao() throws SQLException {
+	public Diagnosticdao() throws SQLException {
 	
 		con = new Conexion();
 	
 	}
-	public void insert(Catalogue add) throws SQLException {
-		String sql = "select addcatalogue (?,?)";
+	public void insert(Diagnostic add) throws SQLException {
+		String sql = "select adddiagnostic (?,?,?,?)";
 		
 		con.conectar();
 		connection = con.getJdbcConnection();
 		  DatabaseMetaData dm = (DatabaseMetaData) connection.getMetaData();
 		System.out.println("Driver name: " + dm.getDriverName()+ "     l     oco");
 		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString (1,add.getId());
-		statement.setString(2,add.getName());
+		statement.setString (1,add.getLevel());
+		statement.setString(2,add.getCatalogue_id());
+		statement.setString(3,add.getPatient_id());
+		statement.setString(4,add.getObservation());
+
 
 	
 		 System.out.println("Driver name: " + dm.getDriverName()+ "  washa");
@@ -48,54 +57,44 @@ public class Cataloguedao {
 		
 	
 	}
-	public List<CatTreat> listCatTreat(String id){
-		
-		List<CatTreat> listCatalogue = new ArrayList<CatTreat>();
-		String sql = "SELECT * from gettreatments(?)";
-		try {
-			con.conectar();
-		
+/*	public Categoria obtenerPorId(String id) throws SQLException {
+		Categoria nuevo = null;
+
+		String sql = "SELECT * FROM Categoria WHERE CodigoCategoria= ? ";
+		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, id);
 
 		ResultSet res = statement.executeQuery();
-		while (res.next()) {
-			CatTreat nuevo =new CatTreat(res.getString("auxcatid"),res.getString("auxtreat"));
-			listCatalogue.add(nuevo);
+		if (res.next()) {
+			nuevo = new Categoria(res.getString("CodigoCategoria"), res.getString("NombreCategoria"), res.getString("Descripcion"),
+					res.getString("Estado"));
 		}
 		res.close();
 		con.desconectar();
-		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
-		return listCatalogue;
-	}
-	
-	public List<Catalogue> listCatalogue() throws SQLException {
+		return nuevo;
+	}*/
+	public List<Center> listCenters() throws SQLException {
 
-		List<Catalogue> listCatalogue = new ArrayList<Catalogue>();
-		String sql = "SELECT * FROM getcatalogue()";
+		List<Center> listcenters = new ArrayList<Center>();
+		String sql = "select * from getcenters()";
 		con.conectar();
 		connection = con.getJdbcConnection();
 		Statement statement = connection.createStatement();
 		ResultSet resulSet = statement.executeQuery(sql);
 
 		while (resulSet.next()) {
-			String id = resulSet.getString("auxcat_id");
-			String nombre= resulSet.getString("auxcat_name");
+			String id = resulSet.getString("auxcenter_id");
+			String nombre= resulSet.getString("auxcenter_name");
 		
-
-			Catalogue nuevo= new Catalogue(id, nombre,"");
-			listCatalogue.add(nuevo);
+			Center nuevo= new Center(id, nombre, "",0,"");
+			listcenters.add(nuevo);
 		}
 		con.desconectar();
-		return listCatalogue;
+		return listcenters;
 	}
-
 	/*
 	public boolean eliminar(Categoria nuevo) throws SQLException {
 		boolean rowEliminar = false;

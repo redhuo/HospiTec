@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+    
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,16 +25,9 @@
 	rel="stylesheet" />
 <body>
 	<div class="container register-form">
-		<h2 class="text-left">Register treatment</h2>
+		<h2 class="text-left">Register Treatment</h2>
 		<form class=form-horizontal action=worker?action=attendapp4 method="post">
 			
-			<div class=form-group>
-				<label class="control-label col-sm-2" for=paciente>Patient
-					id:</label>
-				<div class=col-sm-6>
-					<input type="text" class=form-control id=paciente name=paciente value ="${lol}">
-				</div>
-			</div>
 			<div class=form-group>
 				<label class="control-label col-sm-2" for=area>Treatment:</label>
 				<div class=col-sm-6>
@@ -45,21 +40,18 @@
 			</div>
 			</div>
 			<div class=form-group>
-				<label class="control-label col-sm-2" for=dosis>Dose:</label>
+				<label class="control-label col-sm-2" for=paciente>Patient
+					id:</label>
 				<div class=col-sm-6>
-					<input type="text" class=form-control id=dosis name=dosis>
+					<input type="text" class=form-control id=paciente name=paciente value ="${lol}">
 				</div>
 			</div>
-			<div class=form-group>
-				<label class="control-label col-sm-2" for=tipo>Type:</label>
-				<div class=col-sm-6>
-					<input type="text" class=form-control id=tipo name=tipo>
-				</div>
-			</div>
+		
 			<div class=form-group>
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type=Guardar class="btn btn-lg btn-primary">Submit</button>
 				</div>
+			</div>
 			</div>
 		</form>
 	</div>

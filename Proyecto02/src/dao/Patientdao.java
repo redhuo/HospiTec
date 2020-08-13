@@ -11,8 +11,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import Model.CatTreat;
 import Model.Catalogue;
 import Model.Patient;
+import Model.PatientTreat;
+import Model.Treatment;
 import Model.User;
 import Utils.Conexion;
 
@@ -77,6 +80,57 @@ public class Patientdao {
 
 		return nuevo;
 	}
+	public void insertTreat(Treatment add) throws SQLException {
+		String sql = "select addpatienttreat (?,?,?,?)";
+		
+		con.conectar();
+		connection = con.getJdbcConnection();
+		  DatabaseMetaData dm = (DatabaseMetaData) connection.getMetaData();
+		System.out.println("Driver name: " + dm.getDriverName()+ "     l     oco");
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString (1,add.getName());
+		statement.setString(2,add.getDose());
+		statement.setString(3,add.getType());
+		statement.setString(4,add.getPatient());
+	
+		 System.out.println("Driver name: " + dm.getDriverName()+ "  washa");
+
+		statement.executeUpdate();
+		
+		 System.out.println("Driver name: " + dm.getDriverName()+ "  washa23");
+		statement.close();
+		con.desconectar();
+	
+		
+	
+	}
+	public List<Treatment> listTreat(String id){
+		
+		List<CatTreat> listCatalogue = new ArrayList<CatTreat>();
+		String sql = "SELECT * from gettreatments(?)";
+		try {
+			con.conectar();
+		
+		connection = con.getJdbcConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setString(1, id);
+
+		ResultSet res = statement.executeQuery();
+		while (res.next()) {
+			CatTreat nuevo =new CatTreat(res.getString("auxcatid"),res.getString("auxtreat"));
+			listCatalogue.add(nuevo);
+		}
+		res.close();
+		con.desconectar();
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return listCatalogue;
+	}
+	
 	/*
 	public List<Categoria> listarCategorias() throws SQLException {
 

@@ -1,4 +1,4 @@
-package controller;
+	package controller;
 
 
 import java.io.IOException;
@@ -14,14 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import Model.Appointment;
 import Model.Area;
+import Model.CatTreat;
 import Model.Catalogue;
 import Model.Center;
+import Model.Diagnostic;
+import Model.PatientTreat;
+import Model.Treatment;
 import Model.User;
 import Model.Worker;
 import dao.Appointmentdao;
 import dao.Areadao;
 import dao.Cataloguedao;
 import dao.Centerdao;
+import dao.Diagnosticdao;
 import dao.Patientdao;
 import dao.Userdao;
 import dao.Wokerdao;
@@ -38,6 +43,7 @@ public class  WorkerController  extends HttpServlet {
 	Userdao user;
 	Wokerdao worker;
 	Cataloguedao catalogue;
+	Diagnosticdao diagnostic;
 	
 	public WorkerController() throws SQLException {
 		center = new Centerdao();
@@ -47,6 +53,9 @@ public class  WorkerController  extends HttpServlet {
 		user = new Userdao();
 		worker = new Wokerdao();
 		catalogue = new Cataloguedao();
+		diagnostic = new Diagnosticdao();
+		
+		
 		
 	}
 
@@ -91,6 +100,16 @@ public class  WorkerController  extends HttpServlet {
 			case "attendapp2":
 				attendApp2(request, response);
 				break;
+			case "attendapp3":
+				attendApp3(request, response);
+				break;
+			
+			case "attendapp4":
+				attendApp4(request, response);
+				break;
+			case "cancelapp":
+				cancelApp(request, response);
+				break;
 			default:
 				break;
 			}			
@@ -133,17 +152,8 @@ public class  WorkerController  extends HttpServlet {
 						request.getParameter("apellido2"),request.getParameter("type"),request.getParameter("fecha"));
 		User aux2 = new User(request.getParameter("usuario"),request.getParameter("password"),request.getParameter("type"));
 		worker.insert(aux, aux2, request.getParameter("center"),request.getParameter("area"));
-		String site = "";
-		if(request.getParameter("type").equals("Doctor")) {
-			site = "/WEB-INF/Vista/IndexDoctor.jsp";
-		}
-		else if (request.getParameter("type").equals("Nurse")) {
-			site = "/WEB-INF/Vista/IndexNurse.jsp";
-		}
-		else if (request.getParameter("type").equals("Secretary")) {
-			site = "/WEB-INF/Vista/IndexSecretary.jsp";
-		}
-		RequestDispatcher dispatcher= request.getRequestDispatcher(site);
+	
+		RequestDispatcher dispatcher= request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -188,9 +198,18 @@ public class  WorkerController  extends HttpServlet {
 		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/AttendPatient.jsp");
 		dispatcher.forward(request, response);
 	}
-	private void attendApp2 (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-	
-		String aux = request.getParameter("attend");
+	private void attendApp2 (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException{
+		System.out.println("El attend no sirve 1");
+		
+		String aux=null;
+		try {
+			aux = appdao.obtainPatientId(request.getParameter("attend")).getPatient();
+			appdao.actualizar(request.getParameter("attend"), "Attended");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("El attend no sirve 2");
 		//List<Appointment> apps = appdao.listAllAppointments(user.getUserAreaCenter(user.getSession()).getArea(), user.getUserAreaCenter(user.getSession()).getCenter());
 	//	request.setAttribute("list", apps);
 		//System.out.println("yoooooooooooooooooooooo hahha "+user.getUserAreaCenter(user.getSession()).getCenter());
@@ -200,5 +219,55 @@ public class  WorkerController  extends HttpServlet {
 		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/RegistrarDiagnostico.jsp");
 		dispatcher.forward(request, response);
 	}
+	private void attendApp3 (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException{
+		System.out.println("El attend no sirve 1");
+		Diagnostic diag = new Diagnostic(request.getParameter("estado"),request.getParameter("catalogue"),request.getParameter("paciente"),request.getParameter("observacion"));
+		try {
+			diagnostic.insert(diag);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("El attend no sirve 2");
+
+		List<CatTreat> aux2= catalogue.listCatTreat(request.getParameter("catalogue"));
+	
+	
+		String patientid= request.getParameter("paciente");
+		request.setAttribute("list", aux2);
+		request.setAttribute("lol", patientid);
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/RegistrarTratamiento.jsp");
+		dispatcher.forward(request, response);
+	}
+	private void attendApp4 (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException{
+		System.out.println("El attend no sirve 1");
+		Treatment aux = new Treatment(request.getParameter("paciente"),request.getParameter("treatment"),request.getParameter("dosis"),request.getParameter("tipo"));
+		try {
+			patient.insertTreat(aux);;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("El attend no sirve 2");
+
+	
+		
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/IndexDoctor.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void cancelApp (HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException{
+		
+		String code = request.getParameter("cancel");
+		try {
+			appdao.actualizar(code, "Cancelled");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/Vista/IndexDoctor.jsp");
+		dispatcher.forward(request, response);
+	}
+
 }
 

@@ -24,7 +24,7 @@
 <body>
 	<div class="container register-form">
 		<h2 class="text-left">Register diagnostic</h2>
-		<form class=form-horizontal action=/action_page.php>
+		<form class=form-horizontal action=worker?action=attendapp3 method="post">
 			<div class=form-group>
 				<label class="control-label col-sm-2" for=residencia>Level:</label>
 				<div class=col-sm-6>
@@ -39,7 +39,7 @@
 			<div class=form-group>
 				<label class="control-label col-sm-2" for=code>Catalogue:</label>
 				<div class=col-sm-6>
-				<select class="form-control" name="center" id="center" >
+				<select class="form-control" name="catalogue" id="catalogue" >
 					<c:forEach var="articulo" items="${list}">
 					
 				    <option value="${articulo.getId()}">${articulo.getName()}</option>
@@ -52,7 +52,7 @@
 				<label class="control-label col-sm-2" for=paciente>Patient
 					id:</label>
 				<div class=col-sm-6>
-					<input type="text" class=form-control id=paciente name=paciente>${patientid}</input>
+					<input type="text" class=form-control id=paciente name=paciente value ="${patientid}">
 				</div>
 			</div>
 			<div class=form-group>
